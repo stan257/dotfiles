@@ -62,9 +62,31 @@ create_symlink "$DOTFILES_DIR/ripgreprc" "$HOME/.ripgreprc"
 # Tmux
 create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
-# --- 3. PACKAGE MANAGERS ---
+# --- 3. PACKAGES & PLUGINS ---
 
-echo "Setting up Plugin Managers..."
+echo "Installing Packages & Plugins..."
+
+# Homebrew Packages (macOS)
+if command -v brew > /dev/null; then
+    echo "   Installing brew packages (bat, zoxide, lazygit, fzf, starship)..."
+    brew install bat zoxide lazygit fzf starship
+else
+    echo "   Homebrew not found. Skipping package installation."
+fi
+
+# Zsh Plugins
+ZSH_PLUGINS_DIR="$HOME/.zsh"
+mkdir -p "$ZSH_PLUGINS_DIR"
+
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-autosuggestions" ]; then
+    echo "   Installing zsh-autosuggestions..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS_DIR/zsh-autosuggestions"
+fi
+
+if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
+    echo "   Installing zsh-syntax-highlighting..."
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting"
+fi
 
 # Tmux Plugin Manager (TPM)
 if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then

@@ -66,13 +66,37 @@ create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Installing Packages & Plugins..."
 
-# Homebrew Packages (macOS)
-if command -v brew > /dev/null; then
-    echo "   Installing brew packages (bat, zoxide, lazygit, fzf, starship)..."
-    brew install bat zoxide lazygit fzf starship
-else
-    echo "   Homebrew not found. Skipping package installation."
-fi
+PACKAGES="bat zoxide lazygit fzf starship"
+
+install_macos() {
+    echo "   Detected macOS. Using Homebrew..."
+    if command -v brew > /dev/null; then
+        brew install $PACKAGES
+    else
+        echo "   Error: Homebrew not found. Please install it first: https://brew.sh/"
+    fi
+}
+
+install_linux() {
+    echo "   Detected Linux. Checking package manager..."
+    if command -v apt-get > /dev/null; then
+        sudo apt-get update && sudo apt-get install -y $PACKAGES
+    elif command -v dnf > /dev/null; then
+        sudo dnf install -y $PACKAGES
+    elif command -v pacman > /dev/null; then
+        sudo pacman -S --noconfirm $PACKAGES
+    else
+        echo "   No supported package manager found (apt, dnf, pacman). Please install manually: $PACKAGES"
+    fi
+}
+
+# OS Detection
+OS_TYPE="$(uname -s)"
+case "$OS_TYPE" in
+    Darwin) install_macos ;;
+    Linux)  install_linux ;;
+    *)      echo "   Unsupported OS: $OS_TYPE" ;;
+esac
 
 # Zsh Plugins
 ZSH_PLUGINS_DIR="$HOME/.zsh"

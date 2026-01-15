@@ -78,15 +78,48 @@ install_macos() {
 }
 
 install_linux() {
-    echo "   Detected Linux. Checking package manager..."
+    echo "   🐧 Linux detected. Installing dependencies..."
+    
+    # 1. Update & Install Basic Tools
     if command -v apt-get > /dev/null; then
-        sudo apt-get update && sudo apt-get install -y $PACKAGES
-    elif command -v dnf > /dev/null; then
-        sudo dnf install -y $PACKAGES
-    elif command -v pacman > /dev/null; then
-        sudo pacman -S --noconfirm $PACKAGES
-    else
-        echo "   No supported package manager found (apt, dnf, pacman). Please install manually: $PACKAGES"
+        sudo apt-get update
+        sudo apt-get install -y git curl unzip tar build-essential
+    fi
+
+    # 2. Install "Apt-Safe" Packages (Tmux, FZF, Ripgrep, Bat)
+    # Note: Ubuntu often calls bat 'batcat'
+    if command -v apt-get > /dev/null; then
+        sudo apt-get install -y tmux fzf ripgrep bat
+        # Fix Bat name collision if needed
+        if ! command -v bat > /dev/null && command -v batcat > /dev/null; then
+            mkdir -p ~/.local/bin
+            ln -s /usr/bin/batcat ~/.local/bin/bat
+            export PATH=$HOME/.local/bin:$PATH
+        fi
+    fi
+
+    # 3. Install Modern Tools via Scripts (Distro Agnostic)
+    
+    # Starship
+    if ! command -v starship > /dev/null; then
+        echo "   🚀 Installing Starship..."
+        curl -sS https://starship.rs/install.sh | sh -s -- -y
+    fi
+
+    # Zoxide
+    if ! command -v zoxide > /dev/null; then
+        echo "   📂 Installing Zoxide..."
+        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    fi
+
+    # Lazygit (Binary Install)
+    if ! command -v lazygit > /dev/null; then
+        echo "   💤 Installing Lazygit..."
+        LG_VER=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LG_VER}_Linux_x86_64.tar.gz"
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin
+        rm lazygit lazygit.tar.gz
     fi
 }
 

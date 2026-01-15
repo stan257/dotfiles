@@ -1,0 +1,18 @@
+# 1. Search Logic
+
+--smart-case          
+--hidden       
+# But never look inside .git folder
+--glob=!.git/* 
+
+# 2. Safety (Ignore heavy Data files)
+--glob=!*.csv
+--glob=!*.parquet
+--glob=!*.h5
+--glob=!*.hdf5
+--glob=!*.pkl
+--glob=!*.pyc
+--glob=!__pycache__
+
+# 3. Output Style
+--colors=line:style:bold

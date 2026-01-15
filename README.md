@@ -6,10 +6,21 @@ Configuration files for my development environment (macOS/Zsh).
 
 *   **zshrc**: Main Zsh configuration (plugins, aliases, prompt).
 *   **ripgreprc**: Configuration for `ripgrep` (ignore patterns, defaults).
+*   **install.sh**: Bootstrapping script to set up Zsh, Nvim, and Tmux configurations.
 
 ## Installation
 
-Files are installed via symbolic links to the home directory.
+To clone and install all configurations (Zsh, Nvim, Tmux) on a new machine:
+
+```bash
+git clone https://github.com/stan257/dotfiles.git
+cd dotfiles
+./install.sh
+```
+
+### Manual Installation
+
+If you prefer to link files manually:
 
 ```bash
 # Backup existing files

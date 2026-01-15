@@ -78,7 +78,7 @@ install_macos() {
 }
 
 install_linux() {
-    echo "   🐧 Linux detected. Installing dependencies..."
+    echo "   Linux detected. Installing dependencies..."
     
     # 1. Update & Install Basic Tools
     if command -v apt-get > /dev/null; then
@@ -102,19 +102,19 @@ install_linux() {
     
     # Starship
     if ! command -v starship > /dev/null; then
-        echo "   🚀 Installing Starship..."
+        echo "   Installing Starship..."
         curl -sS https://starship.rs/install.sh | sh -s -- -y
     fi
 
     # Zoxide
     if ! command -v zoxide > /dev/null; then
-        echo "   📂 Installing Zoxide..."
+        echo "   Installing Zoxide..."
         curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
     fi
 
     # Lazygit (Binary Install)
     if ! command -v lazygit > /dev/null; then
-        echo "   💤 Installing Lazygit..."
+        echo "   Installing Lazygit..."
         LG_VER=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
         curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LG_VER}_Linux_x86_64.tar.gz"
         tar xf lazygit.tar.gz lazygit

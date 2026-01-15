@@ -1,16 +1,18 @@
 # Dotfiles
 
-Configuration files for my development environment (macOS/Zsh).
+A cross-platform (macOS/Linux) bootstrap for a modern development environment.
 
-## Contents
+## Features
 
-*   **zshrc**: Main Zsh configuration (plugins, aliases, prompt).
-*   **ripgreprc**: Configuration for `ripgrep` (ignore patterns, defaults).
-*   **install.sh**: Bootstrapping script to set up Zsh, Nvim, and Tmux configurations.
+*   **Zsh**: Optimized config with Starship prompt, zsh-autosuggestions, and syntax highlighting.
+*   **Neovim**: Automatic setup of custom Nvim configurations.
+*   **Tmux**: Configured with Tmux Plugin Manager (TPM).
+*   **Modern CLI Tools**: Automated installation for `bat`, `zoxide`, `lazygit`, `fzf`, and `ripgrep`.
+*   **OS Agnostic**: Hardened `install.sh` for macOS (Homebrew) and Linux (apt, binary, or script installs).
 
-## Installation
+## Quick Start
 
-To clone and install all configurations (Zsh, Nvim, Tmux) on a new machine:
+Run the bootstrapper to set up the environment:
 
 ```bash
 git clone https://github.com/stan257/dotfiles.git
@@ -18,16 +20,17 @@ cd dotfiles
 ./install.sh
 ```
 
-### Manual Installation
+## Structure
 
-If you prefer to link files manually:
+*   `zshrc`: Main Zsh configuration and aliases.
+*   `ripgreprc`: Default `ripgrep` search patterns and options.
+*   `install.sh`: Environment-aware installation and symlinking script.
+
+## Manual Setup
+
+To manually link core configuration files:
 
 ```bash
-# Backup existing files
-mv ~/.zshrc ~/.zshrc.bak
-mv ~/.ripgreprc ~/.ripgreprc.bak
-
-# Create symlinks
-ln -s ~/dotfiles/zshrc ~/.zshrc
-ln -s ~/dotfiles/ripgreprc ~/.ripgreprc
+ln -sf ~/dotfiles/zshrc ~/.zshrc
+ln -sf ~/dotfiles/ripgreprc ~/.ripgreprc
 ```

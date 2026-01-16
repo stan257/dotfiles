@@ -99,6 +99,11 @@ if command -v bat > /dev/null; then
     alias cat='bat'
 fi
 
+# FD (Find replacement)
+if command -v fdfind > /dev/null; then
+    alias fd='fdfind'
+fi
+
 # ==============================================================================
 # RIPGREP CONFIGURATION
 # ==============================================================================

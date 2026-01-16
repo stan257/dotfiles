@@ -7,7 +7,7 @@ A cross-platform (macOS/Linux) bootstrap for a modern development environment.
 *   **Zsh**: Optimized config with Starship prompt, zsh-autosuggestions, and syntax highlighting.
 *   **Neovim**: Automatic setup of custom Nvim configurations.
 *   **Tmux**: Configured with Tmux Plugin Manager (TPM).
-*   **Modern CLI Tools**: Automated installation for `bat`, `zoxide`, `lazygit`, `fzf`, `fd`, `visidata`, `jq`, `btop`, and `ripgrep`.
+*   **Modern CLI Tools**: Automated installation for `bat`, `zoxide`, `lazygit`, `fzf`, `fd`, `visidata`, `jq`, `btop`, `duckdb`, and `ripgrep`.
 *   **OS Agnostic**: Hardened `install.sh` for macOS (Homebrew) and Linux (apt, binary, or script installs).
 
 ## Quick Start

@@ -66,7 +66,7 @@ create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Installing Packages & Plugins..."
 
-PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop"
+PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop duckdb"
 
 install_macos() {
     echo "   Detected macOS. Using Homebrew..."
@@ -128,6 +128,16 @@ install_linux() {
         tar xf lazygit.tar.gz lazygit
         sudo install lazygit /usr/local/bin
         rm lazygit lazygit.tar.gz
+    fi
+
+    # DuckDB (Binary Install)
+    if ! command -v duckdb > /dev/null; then
+        echo "   Installing DuckDB..."
+        DUCKDB_VER=$(curl -s "https://api.github.com/repos/duckdb/duckdb/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lo duckdb.zip "https://github.com/duckdb/duckdb/releases/latest/download/duckdb_cli-linux-amd64.zip"
+        unzip duckdb.zip
+        sudo install duckdb /usr/local/bin
+        rm duckdb duckdb.zip
     fi
 }
 

@@ -66,7 +66,7 @@ create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Installing Packages & Plugins..."
 
-PACKAGES="bat zoxide lazygit fzf starship fd"
+PACKAGES="bat zoxide lazygit fzf starship fd visidata"
 
 install_macos() {
     echo "   Detected macOS. Using Homebrew..."
@@ -86,10 +86,10 @@ install_linux() {
         sudo apt-get install -y git curl unzip tar build-essential
     fi
 
-    # 2. Install "Apt-Safe" Packages (Tmux, FZF, Ripgrep, Bat, FD)
+    # 2. Install "Apt-Safe" Packages (Tmux, FZF, Ripgrep, Bat, FD, VisiData)
     # Note: Ubuntu calls bat 'batcat' and fd 'fdfind'
     if command -v apt-get > /dev/null; then
-        sudo apt-get install -y tmux fzf ripgrep bat fd-find
+        sudo apt-get install -y tmux fzf ripgrep bat fd-find visidata
         
         # Fix Bat name collision
         if ! command -v bat > /dev/null && command -v batcat > /dev/null; then

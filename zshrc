@@ -104,7 +104,10 @@ if command -v fdfind > /dev/null; then
     alias fd='fdfind'
 fi
 
-# ==============================================================================
+# VisiData (Data browser)
+if command -v vd > /dev/null; then
+    alias vd='vd'
+fi
 # RIPGREP CONFIGURATION
 # ==============================================================================
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"

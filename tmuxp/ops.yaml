@@ -1,0 +1,11 @@
+session_name: ops
+windows:
+  - window_name: monitor 
+    layout: tiled
+    panes:
+      - shell_command:     # Pane 0: Lazygit
+          - lazygit
+      - shell_command:     # Pane 1: System Monitor
+          - btop
+      - shell_command:     # Pane 2: Data/Shell
+          - echo "DuckDB / Logs"

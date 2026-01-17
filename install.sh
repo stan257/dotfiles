@@ -66,7 +66,7 @@ create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Installing Packages & Plugins..."
 
-PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop duckdb"
+PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop duckdb tmuxp"
 
 install_macos() {
     echo "   Detected macOS. Using Homebrew..."

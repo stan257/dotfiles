@@ -1,0 +1,13 @@
+session_name: code 
+windows:
+  - window_name: research
+    layout: main-vertical
+    options:
+      main-pane-width: 67%
+    panes:
+      - shell_command: nvim
+      - shell_command: ipython
+      - shell_command: zsh
+  - window_name: shell
+    panes:
+      - zsh

@@ -6,7 +6,7 @@
 echo -n -e "\033]0;Mac Terminal\007"
 
 # PATH Configuration (Prioritize Homebrew ARM & User Python)
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/Library/Python/3.13/bin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$HOME/Library/Python/3.13/bin:$HOME/.cargo/bin:$PATH"
 
 # Editor Defaults
 export EDITOR="nvim"

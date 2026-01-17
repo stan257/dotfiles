@@ -109,7 +109,7 @@ install_linux() {
     # 2. Install "Apt-Safe" Packages (Tmux, FZF, Ripgrep, Bat, FD, VisiData, jq, btop)
     # Note: Ubuntu calls bat 'batcat' and fd 'fdfind'
     if command -v apt-get > /dev/null; then
-        sudo apt-get install -y tmux fzf ripgrep bat fd-find visidata jq btop
+        sudo apt-get install -y tmux fzf ripgrep bat fd-find visidata jq btop python3-pip
         
         # Fix Bat name collision
         if ! command -v bat > /dev/null && command -v batcat > /dev/null; then
@@ -124,6 +124,14 @@ install_linux() {
             ln -sf /usr/bin/fdfind ~/.local/bin/fd
             export PATH=$HOME/.local/bin:$PATH
         fi
+    fi
+
+    # Python Tools (Tmuxp, Ruff)
+    if command -v pip3 > /dev/null; then
+        echo "   Installing Python tools (tmuxp, ruff)..."
+        pip3 install --user tmuxp ruff
+        # Ensure ~/.local/bin is in PATH (often where user pip packages go)
+        export PATH="$HOME/.local/bin:$PATH"
     fi
 
     # 3. Install Modern Tools via Scripts (Distro Agnostic)

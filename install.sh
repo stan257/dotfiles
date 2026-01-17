@@ -68,10 +68,30 @@ echo "Installing Packages & Plugins..."
 
 PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop duckdb tmuxp ruff rust"
 
+# Helper to install cargo crates
+install_rpai() {
+    echo "   Installing/Updating rpai..."
+    
+    # Ensure cargo is available in the current shell
+    if ! command -v cargo > /dev/null; then
+        # Try sourcing cargo env if it exists (common for rustup)
+        if [ -f "$HOME/.cargo/env" ]; then
+            source "$HOME/.cargo/env"
+        fi
+    fi
+
+    if command -v cargo > /dev/null; then
+        cargo install rpai
+    else
+        echo "   Warning: Cargo not found. Skipping rpai installation."
+    fi
+}
+
 install_macos() {
     echo "   Detected macOS. Using Homebrew..."
     if command -v brew > /dev/null; then
         brew install $PACKAGES
+        install_rpai
     else
         echo "   Error: Homebrew not found. Please install it first: https://brew.sh/"
     fi
@@ -139,6 +159,15 @@ install_linux() {
         sudo install duckdb /usr/local/bin
         rm duckdb duckdb.zip
     fi
+
+    # Rust & rpai
+    if ! command -v cargo > /dev/null; then
+        echo "   Installing Rust (rustup)..."
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        # Source env immediately so install_rpai can find cargo
+        [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+    fi
+    install_rpai
 }
 
 # OS Detection

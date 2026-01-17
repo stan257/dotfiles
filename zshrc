@@ -49,8 +49,12 @@ else
 fi
 
 # 2. Syntax Highlighting & Autosuggestions (Cloned to ~/.zsh)
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -r "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+if [ -r "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 
 # 3. Zoxide (Smart Directory Navigation)
 if command -v zoxide > /dev/null; then
@@ -144,4 +148,3 @@ else
     alias mamba="$MAMBA_EXE"
 fi
 unset __mamba_setup
-

@@ -8,7 +8,7 @@ A cross-platform (macOS/Linux) bootstrap for a modern development environment.
 *   **Neovim**: Automatic setup of custom Nvim configurations.
 *   **Tmux**: Configured with Tmux Plugin Manager (TPM) and **tmuxp** for session management.
 *   **Python Tooling**: Automated installation of **ruff** for high-performance linting.
-*   **Rust & AI**: Automated setup for Rust/Cargo and the **rpai** AI agent session manager.
+*   **Rust & AI**: Automated setup for Rust/Cargo and the [**rpai**](https://github.com/radoslav11/rpai) AI agent session manager.
 *   **Modern CLI Tools**: Automated installation for `bat`, `zoxide`, `lazygit`, `fzf`, `fd`, `visidata`, `jq`, `btop`, `duckdb`, and `ripgrep`.
 *   **OS Agnostic**: Hardened `install.sh` for macOS (Homebrew) and Linux (apt, binary, or script installs).
 

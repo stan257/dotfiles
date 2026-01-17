@@ -27,7 +27,7 @@ cd dotfiles
 *   `zshrc`: Main Zsh configuration and aliases.
 *   `ripgreprc`: Default `ripgrep` search patterns and options.
 *   `install.sh`: Environment-aware installation and symlinking script.
-*   `tmuxp/`: YAML configurations for tmuxp session layouts.
+*   `tmux-config/tmuxp/`: YAML configurations for tmuxp session layouts (managed in tmux-config repo).
 
 ## Manual Setup
 

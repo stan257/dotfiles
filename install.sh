@@ -62,6 +62,16 @@ create_symlink "$DOTFILES_DIR/ripgreprc" "$HOME/.ripgreprc"
 # Tmux
 create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
+# Tmuxp
+echo "Linking Tmuxp layouts..."
+mkdir -p "$HOME/.config/tmuxp"
+for layout in "$TMUX_DIR/tmuxp/"*.yaml; do
+    if [ -f "$layout" ]; then
+        basename=$(basename "$layout")
+        create_symlink "$layout" "$HOME/.config/tmuxp/$basename"
+    fi
+done
+
 # --- 3. PACKAGES & PLUGINS ---
 
 echo "Installing Packages & Plugins..."

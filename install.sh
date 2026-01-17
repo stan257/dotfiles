@@ -66,7 +66,7 @@ create_symlink "$TMUX_DIR/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Installing Packages & Plugins..."
 
-PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop duckdb tmuxp ruff rust"
+PACKAGES="bat zoxide lazygit fzf starship fd visidata jq btop duckdb tmuxp ruff rust tmux ripgrep neovim"
 
 # Helper to install cargo crates
 install_rpai() {
@@ -109,7 +109,7 @@ install_linux() {
     # 2. Install "Apt-Safe" Packages (Tmux, FZF, Ripgrep, Bat, FD, VisiData, jq, btop)
     # Note: Ubuntu calls bat 'batcat' and fd 'fdfind'
     if command -v apt-get > /dev/null; then
-        sudo apt-get install -y tmux fzf ripgrep bat fd-find visidata jq btop python3-pip
+        sudo apt-get install -y tmux fzf ripgrep bat fd-find visidata jq btop python3-pip zsh neovim
         
         # Fix Bat name collision
         if ! command -v bat > /dev/null && command -v batcat > /dev/null; then

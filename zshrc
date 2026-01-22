@@ -124,27 +124,31 @@ alias rgdef='rg -t py "^def\s+"'    # Find python function definitions
 # ==============================================================================
 # PYTHON ENVIRONMENTS (Conda/Mamba)
 # ==============================================================================
-# Managed by conda init
-__conda_setup="$($HOME/miniforge3/bin/conda shell.zsh hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniforge3/etc/profile.d/conda.sh"
+# Managed by conda init (only if Miniforge exists)
+if [ -x "$HOME/miniforge3/bin/conda" ]; then
+    __conda_setup="$($HOME/miniforge3/bin/conda shell.zsh hook 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
     else
-        export PATH="$HOME/miniforge3/bin:$PATH"
+        if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/miniforge3/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/miniforge3/bin:$PATH"
+        fi
     fi
+    unset __conda_setup
 fi
-unset __conda_setup
 
-# Managed by mamba shell init
-export MAMBA_EXE="$HOME/miniforge3/bin/mamba"
-export MAMBA_ROOT_PREFIX="$HOME/miniforge3"
-__mamba_setup="$( $MAMBA_EXE shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    unalias mamba 2> /dev/null
-    eval "$__mamba_setup"
-else
-    alias mamba="$MAMBA_EXE"
+# Managed by mamba shell init (only if Miniforge exists)
+if [ -x "$HOME/miniforge3/bin/mamba" ]; then
+    export MAMBA_EXE="$HOME/miniforge3/bin/mamba"
+    export MAMBA_ROOT_PREFIX="$HOME/miniforge3"
+    __mamba_setup="$( $MAMBA_EXE shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        unalias mamba 2> /dev/null
+        eval "$__mamba_setup"
+    else
+        alias mamba="$MAMBA_EXE"
+    fi
+    unset __mamba_setup
 fi
-unset __mamba_setup
